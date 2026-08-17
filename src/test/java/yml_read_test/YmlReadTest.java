@@ -1,8 +1,8 @@
 package yml_read_test;
 
 import com.alibaba.fastjson.JSONObject;
-import com.autotest.framework.common.entities.JdbcConfig;
-import com.autotest.framework.context.UserTestContext;
+import com.test.assistant.common.entities.JdbcConfig;
+import com.test.assistant.context.UserTestContext;
 
 import java.io.File;
 

@@ -1,7 +1,7 @@
 package test;
 
-import com.autotest.framework.builder.BaseAutoCaseBuilder;
-import com.autotest.framework.context.UserTestContext;
+import com.test.assistant.builder.BaseAutoCaseBuilder;
+import com.test.assistant.context.UserTestContext;
 
 public class HttpTest {
     public static void main(String[] args) throws Exception {

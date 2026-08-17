@@ -6,8 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeoutException;
 
-import static com.autotest.framework.utils.PairwiseTestUtils.RANDOM_STRING_PY_PATH;
-import static com.autotest.framework.utils.PairwiseTestUtils.randomStringByRegex;
+import static com.test.assistant.utils.PairwiseTestUtils.RANDOM_STRING_PY_PATH;
+import static com.test.assistant.utils.PairwiseTestUtils.randomStringByRegex;
 
 public class RandomTest {
     public static void main(String[] args) throws IOException, InterruptedException, TimeoutException {

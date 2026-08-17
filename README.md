@@ -1,8 +1,8 @@
-# autotest-framework
+# autotest-assistant
 
 #### 介绍
 ```text
-java autotest framework
+java autotest assistant
 链式调用编写自动化用例
 根据接口定义生成自动化测试
 ```

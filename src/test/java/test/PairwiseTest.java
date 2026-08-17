@@ -2,8 +2,8 @@ package test;
 
 import cn.hutool.core.lang.Dict;
 import cn.hutool.setting.yaml.YamlUtil;
-import com.autotest.framework.builder.BaseAutoCaseBuilder;
-import com.autotest.framework.context.UserTestContext;
+import com.test.assistant.builder.BaseAutoCaseBuilder;
+import com.test.assistant.context.UserTestContext;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 
 import java.util.Map;
 
-import static com.autotest.framework.utils.PairwiseTestUtils.*;
+import static com.test.assistant.utils.PairwiseTestUtils.*;
 
 @Slf4j
 public class PairwiseTest {

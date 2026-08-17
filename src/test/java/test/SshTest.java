@@ -1,6 +1,6 @@
 package test;
 
-import com.autotest.framework.utils.SshUtils;
+import com.test.assistant.utils.SshUtils;
 import com.jcraft.jsch.Session;
 
 public class SshTest {

@@ -1,6 +1,6 @@
 description: "添加用户"
 repeat: success
-type: object
+type: array
 required:
   - userList_0_name
 properties:

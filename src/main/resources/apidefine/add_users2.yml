@@ -1,0 +1,21 @@
+description: "添加用户"
+repeat: success
+type: object
+properties:
+  userInfo:
+    type: object
+    required:
+      - userName
+    properties:
+      userName:
+        description: "用户姓名"
+        type: string
+        minLength: 10
+        maxLength: 64
+        example: "test"
+  sex:
+    description: "用户性别"
+    type: integer
+    enums:
+      - 0
+      - 1

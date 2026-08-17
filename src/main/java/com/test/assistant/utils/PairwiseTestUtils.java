@@ -112,7 +112,7 @@ public class PairwiseTestUtils {
         }
 
         fileName = apiDefineYmlName.replaceAll(".yml", ".txt");
-        List<LinkedHashMap<String, String>> distinctList = getPictGroups(fileName, builder2, fieldNames, "1");
+        List<LinkedHashMap<String, String>> distinctList = getPictGroups(fileName, builder2, fieldNames, "2");
 
         for (final String key : fieldNames) {
             distinctList = distinctList.stream()
@@ -293,30 +293,18 @@ public class PairwiseTestUtils {
 
     public static void generateFieldValues(Dict dict, Map<String, List<String>> fieldValuesMap, String dictPrefixPath, String fieldPrefixPath) {
         String type = dict.getByPath(getDictPath(dictPrefixPath, "type"));
-        if(StringUtils.equals(type, PARAMETER_TYPE_OBJECT)) {
+        if(StringUtils.equals(type, PARAMETER_TYPE_OBJECT) || StringUtils.equals(type, PARAMETER_TYPE_ARRAY)) {
             List<String> requiredFields = dict.getByPath(getDictPath(dictPrefixPath, "required"));
             ((LinkedHashMap) dict.getByPath(getDictPath(dictPrefixPath, "properties"))).forEach((fieldName, fieldProperties) -> {
                 LinkedHashMap properties = (LinkedHashMap) fieldProperties;
-                if(StringUtils.equals(properties.get("type").toString(), PARAMETER_TYPE_ARRAY)) {
-                    String itemType = dict.getByPath(getDictPath(dictPrefixPath, "properties." + fieldName.toString()) + ".items.type");
-                    if(!StringUtils.equals(itemType, PARAMETER_TYPE_OBJECT) && !StringUtils.equals(itemType, PARAMETER_TYPE_ARRAY)) {
-                        generateFieldValues(dict, fieldValuesMap, getDictPath(dictPrefixPath, "properties." + fieldName + ".items"),fieldPrefixPath + fieldName + "[0]");
-                    }else{
-                        generateFieldValues(dict, fieldValuesMap, getDictPath(dictPrefixPath, "properties." + fieldName + ".items"), fieldPrefixPath + fieldName + "[0].");
-                    }
-                }else if(StringUtils.equals(properties.get("type").toString(), PARAMETER_TYPE_OBJECT)) {
-                    generateFieldValues(dict, fieldValuesMap, getDictPath(dictPrefixPath, "properties." + fieldName), fieldPrefixPath + fieldName + ".");
+                if(StringUtils.equals(properties.get("type").toString(), PARAMETER_TYPE_OBJECT) ||
+                        StringUtils.equals(properties.get("type").toString(), PARAMETER_TYPE_ARRAY)) {
+                    String dictPath = getDictPath(dictPrefixPath, "properties." + fieldName);
+                    generateFieldValues(dict, fieldValuesMap, dictPath, fieldPrefixPath + fieldName + ".");
                 }else{
                     generateField(fieldValuesMap, fieldPrefixPath, requiredFields, fieldName, properties);
                 }
             });
-        } else if(StringUtils.equals(type, PARAMETER_TYPE_ARRAY)) {
-            String itemType = getDictPath(dictPrefixPath, "") + ".items.type";
-            if(!StringUtils.equals(itemType, PARAMETER_TYPE_OBJECT) && !StringUtils.equals(itemType, PARAMETER_TYPE_ARRAY)) {
-                generateFieldValues(dict, fieldValuesMap, getDictPath(dictPrefixPath, "properties.items"),"[0]");
-            }else{
-                generateFieldValues(dict, fieldValuesMap, getDictPath(dictPrefixPath, "properties.items"), "[0].");
-            }
         } else {
             Boolean must = dict.getByPath(getDictPath(dictPrefixPath, "must"));
             if(must != null && must) {

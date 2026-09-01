@@ -26,7 +26,12 @@ public class PairwiseUserAddTest2 {
     public void testAddUserRights2(Map<String, String> row) throws Exception {
         runGroup(row, dictAddUser, "添加用户", "/user/addUsers", """
                         {
-                            "userInfo": {"userName":"${$.userInfo.userName}"}, "sex":"${$.sex}"}
+                            "userInfo": {
+                                    "userName":"${$.userInfo.userName}",
+                                    "occupation":${$.userInfo.occupation}
+                                },
+                                "sex":"${$.sex}"
+                            }
                         }
                         """, UserTestContext.getInstance());
     }

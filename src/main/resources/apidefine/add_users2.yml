@@ -13,6 +13,12 @@ properties:
         minLength: 10
         maxLength: 64
         example: "test"
+      occupation:
+        description: "职业"
+        type: integer
+        enums:
+          - 1
+          - 2
   sex:
     description: "用户性别"
     type: integer
